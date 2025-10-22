@@ -1,0 +1,132 @@
+:root{
+    --languide-blue: #008CFF;
+    --languide-white: #FFFFFF;
+    --languide-main-text: #000000;
+    --languide-secondary-text: #787878;
+
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    background-color: var(--languide-white);
+    color: var(--languide-main-text);
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    padding-top: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--languide-blue);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--languide-blue);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color:  #0056d4;
+}
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+}
+
+.hero-text {
+    width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 2.2rem;
+    color: var(--languide-blue);
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: var(--languide-main-text);
+    line-height: 1.6;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.btn-primary {
+    background-color: var(--languide-blue);
+    color: var(--languide-white);
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    max-width: 200px;
+}
+
+.btn-primary:hover {
+    background-color: #0056d4;
+}
+
+.btn-secondary {
+    border: 2px solid var(--languide-blue);
+    color: var(--languide-blue);
+    padding: 10px 23px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    max-width: 200px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--languide-blue);
+    color: var(--languide-white);
+}
+
+
+.hero-image {
+    width: 75%;
+    margin-top: -8% ;
+    margin-bottom: -4%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 90%;
+    max-width: 900px;
+}
+
