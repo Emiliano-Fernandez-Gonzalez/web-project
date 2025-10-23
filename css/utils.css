@@ -16,6 +16,7 @@
 .btn-secondary {
     border: 2px solid var(--languide-blue);
     color: var(--languide-blue);
+    background-color: var(--languide-white);
     padding: 10px 23px;
     border-radius: 8px;
     text-decoration: none;
