@@ -114,13 +114,17 @@ body {
 }
 
 .shape-1 {
-    bottom: -350px;
-    right: -100px;
+    bottom: -340px !important;
+    left: 480px !important;
     width: 1090px;
-    rotate: 40deg;
+    rotate: 25deg;
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        visibility: hidden;
+    }
+    
     .hero {
         display: flex;
         flex-direction: column;
@@ -130,19 +134,44 @@ body {
     }
 
     .hero-text {
-        width: 100%;
+        order: 1;
         text-align: center;
         gap: 10px;
     }
 
-    .buttons {
-        width: 100%;
-        align-items: center;
-    }
-
     .hero-image {
+        order: 2;
         width: 90%;
         max-width: 400px;
         margin: 0 auto;
+    }
+
+    .buttons {
+        order: 3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-width: 180px;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+        z-index: 1;
+    }
+    .buttons a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .bg-shape {
+        position: absolute;
+        z-index: 0;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+    .shape-1 {
+        bottom: 12vh !important;
+        left: 21px !important;
+        width: 400px !important;
+        rotate: 25deg;
     }
 }
