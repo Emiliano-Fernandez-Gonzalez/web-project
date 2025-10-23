@@ -1,16 +1,15 @@
-:root{
-    --languide-blue: #008CFF;
-    --languide-white: #FFFFFF;
+:root {
+    --languide-blue: #008cff;
+    --languide-white: #ffffff;
     --languide-main-text: #000000;
     --languide-secondary-text: #787878;
-
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 body {
@@ -50,7 +49,7 @@ body {
 }
 
 .nav-links a:hover {
-    color:  #0056d4;
+    color: #0056d4;
 }
 
 .hero {
@@ -85,37 +84,6 @@ body {
     gap: 15px;
 }
 
-.btn-primary {
-    background-color: var(--languide-blue);
-    color: var(--languide-white);
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease;
-    max-width: 200px;
-}
-
-.btn-primary:hover {
-    background-color: #0056d4;
-}
-
-.btn-secondary {
-    border: 2px solid var(--languide-blue);
-    color: var(--languide-blue);
-    padding: 10px 23px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    max-width: 200px;
-}
-
-.btn-secondary:hover {
-    background-color: var(--languide-blue);
-    color: var(--languide-white);
-}
-
 .hero-image {
     width: 75%;
     margin-top: -14.58%;
@@ -126,27 +94,27 @@ body {
 }
 
 .hero-image img {
-    display: block; 
+    display: block;
     width: 100%;
     max-width: 900px;
 }
 
 .bg-shape {
-  position: absolute;
-  z-index: 0; 
-  opacity: 0.9; 
-  pointer-events: none;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.9;
+    pointer-events: none;
 }
 
 .shape-1 {
-  bottom: -350px;
-  right: -100px;
-  width: 1090px;
-  rotate: 40deg;
+    bottom: -350px;
+    right: -100px;
+    width: 1090px;
+    rotate: 40deg;
 }
 
 .hero-text,
 .hero-image {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
