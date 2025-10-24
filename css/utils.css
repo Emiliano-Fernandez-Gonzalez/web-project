@@ -238,13 +238,13 @@ header, .nav-bar {
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-    padding: 5px 50px;
     margin: 0 10px;
     text-decoration: none;
     text-align: center;
     font-weight: 600;
     font-size: 1rem;
     transition: background 0.3s ease;
+    height: 30px;
     width: 180px;
     cursor: pointer;
 }
