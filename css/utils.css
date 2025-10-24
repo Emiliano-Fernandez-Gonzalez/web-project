@@ -6,6 +6,8 @@
     --languide-main-text: #000000;
     --languide-secondary-text: #787878;
     --languide-gray: #555555;
+    --languide-correct: #00DD00;
+    --languide-wrong: #C8102E;
 }
 
 /* HTML y cuerpos de página */
