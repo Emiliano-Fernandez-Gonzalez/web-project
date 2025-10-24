@@ -240,6 +240,14 @@ header, .nav-bar {
     gap: 22.5px;
 }
 
+.question-feedback {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Botones */
 
 .btn-primary {
@@ -323,6 +331,16 @@ header, .nav-bar {
     font-size: 0.5em;
 }
 
+.selected.wrong {
+    background-color: var(--languide-wrong);
+    color: var(--languide-white);
+}
+
+.selected.correct {
+    background-color: var(--languide-correct);
+    color: var(--languide-white);
+}
+
 /* Labels e inputs */
 
 .login-form > label {
@@ -379,6 +397,19 @@ header, .nav-bar {
 .question {
     margin-top: 20px;
 }
+
+.feedback {
+    margin-top: 20px;
+}
+
+.wrong {
+    color: var(--languide-wrong);
+}
+
+.correct {
+    color: var(--languide-correct);
+}
+
 
 /* Links */
 
