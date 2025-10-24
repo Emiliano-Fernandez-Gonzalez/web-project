@@ -6,6 +6,8 @@
     --languide-main-text: #000000;
     --languide-secondary-text: #787878;
     --languide-gray: #555555;
+    --languide-correct: #00DD00;
+    --languide-wrong: #C8102E;
 }
 
 /* HTML y cuerpos de página */
@@ -189,6 +191,44 @@ header, .nav-bar {
     background-color: var(--languide-white);
 }
 
+.progress-status {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-container {
+    width: 30%;
+    height: 7px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--languide-blue);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.progress-days {
+    width: 50%;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-day-info {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-top: 15px;
+    margin-right: -400px;
+}
+
 /* Botones */
 
 .btn-primary {
@@ -259,6 +299,17 @@ header, .nav-bar {
     color: var(--languide-white);
 }
 
+.play-lesson {
+    border-radius: 50px;
+    border: none;
+    margin-left: 20px;
+    background-color: var(--languide-blue);
+    color: var(--languide-white);
+    height: 20px;
+    width: 20px;
+    font-size: 0.5em;
+}
+
 /* Labels e inputs */
 
 .login-form > label {
@@ -282,10 +333,34 @@ header, .nav-bar {
 .container-title {
     font-size: 1.4em;
     font-weight: 600;
+    padding-right: 20px;
 }
 
 .options-title {
     padding-top: 10px;
+}
+
+.progress-percentage {
+    color: var(--languide-gray);
+    font-weight: 600;
+    font-size: 0.9em;
+    padding-left: 5px;
+}
+
+.progress-days label {
+    font-size: 1.2em;
+}
+
+.day-lesson-name {
+    width: 200px;
+}
+
+.completed {
+    color: var(--languide-correct);
+}
+
+.pendant {
+    color: var(--languide-wrong);
 }
 
 /* Links */

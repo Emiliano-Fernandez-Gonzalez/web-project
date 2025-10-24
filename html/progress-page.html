@@ -22,33 +22,43 @@
 
     <main class="content">
         <div class="content-container">
-            <p class="container-title">Configura tus objetivos de aprendizaje.</p>
-            <label class="options-title">Lenguaje:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
-                <button type="button" class="btn-secondary option">
-                    <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon">
-                    Inglés
-                </button>
-                <button type="button" class="btn-secondary option selected">
-                    <img src="../img/french.png" alt="france-flag" class="option-icon">
-                    Francés
-                </button>
-                <button type="button" class="btn-secondary option">
-                    <img src="../img/spanish.png" alt="spain-flag" class="option-icon">
-                    Español
-                </button>
+            <div class="progress-status">
+                <p class="container-title">Progreso</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 74%;"></div>
+                </div>
+                <p class="progress-percentage">74%</p>
             </div>
-            <label class="options-title">Nivel:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
-                <button type="button" class="btn-secondary option">Básico</button>
-                <button type="button" class="btn-secondary option">Intermedio</button>
-                <button type="button" class="btn-secondary option selected">Avanzado</button>
-            </div>
-            <label class="options-title">Objetivos:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
-                <button type="button" class="btn-secondary option selected">Viajes</button>
-                <button type="button" class="btn-secondary option">Negocios</button>
-                <button type="button" class="btn-secondary option">Educación</button>
+            <div class="progress-days">
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 1: Saludos.</label>
+                    <label class="day-status completed">Completada.</label>
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 2: Numeros.</label>
+                    <label class="day-status completed">Completada.</label>
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 3: Dias.</label>
+                    <label class="day-status completed">Completada.</label>
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 4: Comida.</label>
+                    <label class="day-status pendant">Pendiente.<button class="play-lesson">▶</button></label>
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 5: Lugares.</label>
+                    <label class="day-status completed">Completada.</label>
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 6: Compras.</label>
+                    <label class="day-status pendant">Pendiente.<button class="play-lesson">▶</button></label>
+                    
+                </div>
+                <div class="progress-day-info">
+                    <label class="day-lesson-name">Dia 7: Animales.</label>
+                    <label class="day-status completed">Completada.</label>
+                </div>
             </div>
             <a href="#" class="btn-primary generate-plan">Cerrar sesión</a>
         </div>
