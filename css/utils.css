@@ -442,5 +442,113 @@ header, .nav-bar {
 }
 
 @media (max-width: 480px) {
+  header, .nav-bar {
+        display: none;
+    }
 
+    .bg-shape {
+        display: block !important; 
+        opacity: 0.5; 
+        position: absolute; 
+    }
+    
+    .shape-3 {
+        top: -150px !important;
+        left: -150px !important;
+        width: 350px !important;
+        transform: rotate(50deg);
+    }
+    
+    .shape-4 {
+        right: -150px !important;
+        bottom: -100px !important;
+        width: 300px !important;
+        transform: rotate(230deg);
+    }
+
+    .content {
+        margin-top: 0; 
+        padding: 20px;
+        z-index: 1; 
+        align-items: flex-start; 
+        min-height: 100vh;
+    }
+
+    .content-container {
+        width: 100%; 
+        min-height: auto;
+        margin-top: 0;
+        padding: 25px 20px; 
+        border: none; 
+        box-shadow: none; 
+        flex-direction: column; 
+        gap: 15px;
+        background-color: var(--languide-white); 
+        z-index: 2; 
+    }
+    
+    .login-container {
+        padding: 20px;
+        z-index: 1;
+    }
+    .login-card {
+        padding: 30px 25px; 
+        border: none; 
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); 
+        z-index: 2;
+    }
+
+    .container-title {
+        font-size: 1.2em;
+        text-align: center;
+        width: 100%;
+    }
+
+    .option-group {
+        display: flex;
+        flex-direction: column; 
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .btn-secondary.option {
+        width: 100%; 
+        margin: 0;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 15px; 
+        height: auto;
+    }
+    
+    .options-title {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .progress-status {
+        flex-direction: column; 
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .progress-container {
+        width: 100%;
+    }
+    
+    .progress-days {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .content-button {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .btn-primary.content-button {
+        padding: 15px;
+        font-size: 1.1em;
+        border-radius: 10px;
+    }
 }
