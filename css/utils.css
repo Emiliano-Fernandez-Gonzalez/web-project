@@ -80,9 +80,18 @@ html,
 }
 
 .user-pic {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
+}
+
+.option-icon {
+    width: 24p;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Divs y contenedores */
@@ -161,7 +170,7 @@ header, .nav-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 90px;
     z-index: 0;
 }
 
@@ -234,9 +243,20 @@ header, .nav-bar {
     text-decoration: none;
     text-align: center;
     font-weight: 600;
+    font-size: 1rem;
     transition: background 0.3s ease;
     width: 180px;
     cursor: pointer;
+}
+
+.option.selected {
+    background-color: var(--languide-blue);
+    color: var(--languide-white);
+}
+
+.option.selected:hover {
+    background-color: var(--languide-blue);
+    color: var(--languide-white);
 }
 
 /* Labels e inputs */
