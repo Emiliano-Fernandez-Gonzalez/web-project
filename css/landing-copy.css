@@ -18,32 +18,37 @@ body {
     overflow: hidden;
 }
 
-
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 40px 80px 20px 80px;
-    position: relative;
-    z-index: 10;
+    justify-content: center;
+    padding: 20px 80px 20px 80px;
+    z-index: 2;
+}
+
+.navbar nav {
+    width: 100%;
 }
 
 .logo {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: var(--languide-blue);
 }
 
 .nav-links {
+    margin-left: 2rem;
+    justify-content: flex-end;
     list-style: none;
     display: flex;
-    gap: 150px;
+    gap: 50px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--languide-blue);
     font-weight: bold;
+    font-size: 1.1rem;
     transition: color 0.3s;
 }
 
@@ -52,32 +57,32 @@ body {
 }
 
 .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;       
-    grid-template-rows: auto auto;       
-    gap: 10px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    padding: 60px 80px;
-}
-
-.hero-text {
-    grid-area: 1 / 1 / 2 / 2; 
     display: flex;
-    flex-direction: column;
-    align-self: center;
+    flex-direction: row;
     gap: 20px;
-    position: relative;
+    padding: 120px 80px;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
 }
 
-.hero-text h1 {
-    font-size: 2.2rem;
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 2.4rem;
     color: var(--languide-blue);
 }
 
-.hero-text p {
+.hero-description {
+    max-width: 500px;
+}
+
+.hero-description p {
     font-size: 1.1rem;
     color: var(--languide-main-text);
     line-height: 1.6;
@@ -85,25 +90,36 @@ body {
 
 .buttons {
     display: flex;
-    flex-direction: column;   
-    align-content: flex-start; 
-    gap: 10px; 
-    margin-top: -10vh;
+    flex-direction: column;
+    align-content: flex-start;
+    gap: 10px;
+    z-index: 2;
 }
 
-.hero-image {
-    grid-area: 1 / 2 / 3 / 3; 
+.buttons a {
+    text-align: center;
+}
+
+.hero-img {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     z-index: 1;
 }
 
-.hero-image img {
-    width: 100%;
-    max-width: 900px;
+.hero-img img {
+    width: 400px;
+    min-width: 350px;
+    max-width: 500px;
     display: block;
+}
+
+.hero-img.desktop {
+    display: flex;
+}
+
+.hero-img.mobile {
+    display: none;
 }
 
 .bg-shape {
@@ -115,47 +131,94 @@ body {
 
 .shape-1 {
     bottom: -340px !important;
-    left: 480px !important;
+    left: 600px !important;
     width: 1090px;
     rotate: 25deg;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 850px) {
+    .hero {
+        flex-direction: column;
+        padding-top: 100px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .hero-content h1 {
+        font-size: 1.9rem;
+        color: var(--languide-blue);
+
+    }
+
+    .hero-img.mobile {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 4rem;
+    }
+
+    .hero-img.desktop {
+        display: none;
+    }
+
+    .hero-img.mobile {
+        display: flex;
+    }
+}
+
+@media (max-width: 600px) {
     .navbar {
         visibility: hidden;
     }
-    
+
     .hero {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 20px;
         padding: 40px 20px;
     }
 
-    .hero-text {
-        order: 1;
-        text-align: center;
-        gap: 10px;
+    .hero-content {
+        align-items: center;
+        justify-content: center;
+        text-align: left;
     }
 
-    .hero-image {
-        order: 2;
-        width: 90%;
-        max-width: 400px;
-        margin: 0 auto;
+    .hero-content h1 {
+        margin-top: 4rem;
+    }
+
+    .hero-content h1,
+    .hero-description {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .hero-img.mobile img {
+        justify-content: center;
     }
 
     .buttons {
-        order: 3;
         width: 100%;
         display: flex;
         flex-direction: column;
         max-width: 180px;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         margin-top: 0;
-        z-index: 1;
+        margin-left: 0;
     }
     .buttons a {
         width: 100%;
@@ -167,6 +230,7 @@ body {
         z-index: 0;
         opacity: 0.9;
         pointer-events: none;
+
     }
     .shape-1 {
         bottom: 12vh !important;
