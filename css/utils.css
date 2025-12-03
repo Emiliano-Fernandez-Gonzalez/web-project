@@ -619,6 +619,10 @@ header, .nav-bar {
         height: auto;
     }
 
+    .question-page-body .btn-secondary.option {
+        width: 180px;
+    }
+
     .options-title {
         width: 100%;
         text-align: center;
