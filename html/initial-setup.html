@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>Initial Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/utils.css" />
 </head>
 <body class="initial-setup-body">
@@ -23,12 +26,31 @@
         <div class="content-container">
             <p class="container-title centered">Configura tus objetivos de aprendizaje.</p>
             <label class="options-title">Lenguaje:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
+            <div class="slider">
+                <button class="arrow left">◀</button>
+
+                <div class="slider-window">
+                    <div class="slider-track">
+                        <button type="button" class="btn-secondary option">
+                            <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon"> Inglés
+                        </button>
+                        <button type="button" class="btn-secondary option">
+                            <img src="../img/french.png" alt="france-flag" class="option-icon"> Francés
+                        </button>
+                        <button type="button" class="btn-secondary option">
+                            <img src="../img/spanish.png" alt="spain-flag" class="option-icon"> Español
+                        </button>
+                    </div>
+                </div>
+
+                <button class="arrow right">▶</button>
+            </div>
+            <div class="option-group" role="group">
                 <button type="button" class="btn-secondary option">
                     <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon">
                     Inglés
                 </button>
-                <button type="button" class="btn-secondary option selected">
+                <button type="button" class="btn-secondary option">
                     <img src="../img/french.png" alt="france-flag" class="option-icon">
                     Francés
                 </button>
@@ -38,19 +60,69 @@
                 </button>
             </div>
             <label class="options-title">Nivel:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
+            <div class="slider">
+                <button class="arrow left">◀</button>
+
+                <div class="slider-window">
+                    <div class="slider-track">
+                        <button type="button" class="btn-secondary option">Básico</button>
+                        <button type="button" class="btn-secondary option">Intermedio</button>
+                        <button type="button" class="btn-secondary option">Avanzado</button>
+                    </div>
+                </div>
+
+                <button class="arrow right">▶</button>
+            </div>
+            <div class="option-group" role="group">
                 <button type="button" class="btn-secondary option">Básico</button>
                 <button type="button" class="btn-secondary option">Intermedio</button>
-                <button type="button" class="btn-secondary option selected">Avanzado</button>
+                <button type="button" class="btn-secondary option">Avanzado</button>
             </div>
             <label class="options-title">Objetivos:</label>
-            <div class="option-group" role="group" aria-label="Lenguaje">
-                <button type="button" class="btn-secondary option selected">Viajes</button>
+            <div class="slider">
+                <button class="arrow left">◀</button>
+
+                <div class="slider-window">
+                    <div class="slider-track">
+                        <button type="button" class="btn-secondary option">Viajes</button>
+                        <button type="button" class="btn-secondary option">Negocios</button>
+                        <button type="button" class="btn-secondary option">Educación</button>
+                    </div>
+                </div>
+
+                <button class="arrow right">▶</button>
+            </div>
+            <div class="option-group" role="group">
+                <button type="button" class="btn-secondary option">Viajes</button>
                 <button type="button" class="btn-secondary option">Negocios</button>
                 <button type="button" class="btn-secondary option">Educación</button>
             </div>
             <a href="#" class="btn-primary content-button" onclick="window.location.href='progress-page.html'">Generar plan</a>
         </div>
     </main>
+    <script>
+        document.querySelectorAll(".slider").forEach(slider => {
+            const track = slider.querySelector(".slider-track");
+            const options = track.children;
+            let index = 0;
+
+            const getOptionWidth = () => options[0].offsetWidth;
+
+            const update = () => {
+                const width = getOptionWidth();
+                track.style.transform = `translateX(-${index * 210}px)`;
+            }
+
+            slider.querySelector(".left").addEventListener("click", () => {
+                index = (index - 1 + options.length) % options.length;
+                update();
+            });
+
+            slider.querySelector(".right").addEventListener("click", () => {
+                index = (index + 1) % options.length;
+                update();
+            });
+        });
+    </script>
 </body>
 </html>
