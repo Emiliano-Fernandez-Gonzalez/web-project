@@ -29,7 +29,32 @@
             <label for="password">Contraseña</label>
             <input type="password" id="password" placeholder="Ingresa tu contraseña" />
 
-            <button type="button" class="btn-primary" onclick="window.location.href='initial-setup.html'">Registrarse.</button>
+            <button type="button" class="btn-primary" onclick="registrarUsuario()">Registrarse.</button>
+            <script>
+                function registrarUsuario() {
+                    const usuario = document.getElementById("usuario").value;
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
+
+                    const formData = new FormData();
+                    formData.append("usuario", usuario);
+                    formData.append("email", email);
+                    formData.append("password", password);
+
+                    fetch("../php/register.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(r => r.text())
+                    .then(res => {
+                        if (res === "OK") {
+                            window.location.href = "initial-setup.html";
+                        } else {
+                            alert(res);
+                        }
+                    });
+                }
+            </script>
         </form>
 
         <div class="login-links">

@@ -7,6 +7,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/utils.css" />
+
+    <style>
+        .day-lesson-name {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            line-height: 1.2em;
+            margin-bottom: 4px;
+            word-break: keep-all;
+        }
+
+
+    </style>
 </head>
 <body class="progress-page-body">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-3">
@@ -46,36 +62,97 @@
                 <div class="days-statuses">
                     <div id="day-1" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(0)">▶</button>
                     </div>
                     <div id="day-2" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(1)">▶</button>
                     </div>
                     <div id="day-3" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(2)">▶</button>
                     </div>
                     <div id="day-4" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(3)">▶</button>
                     </div>
                     <div id="day-5" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(4)">▶</button>
                     </div>
                     <div id="day-6" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(5)">▶</button>
                     </div>
                     <div id="day-7" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="window.location.href='question-page.html'">▶</button>
+                        <button class="play-lesson" onclick="startLesson(6)">▶</button>
                     </div>
                 </div>
             </div>
             <a href="landing-page.html" class="btn-primary content-button">Cerrar sesión</a>
+
+
         </div>
     </main>
+   <script>
+        async function loadProgress() {
+    try {
+        const res = await fetch("../php/progress.php");
+        const data = await res.json();
+
+        if (!data.temario) return;
+
+        const plan = data.temario.plan; 
+
+     
+        const progresoOriginal = data.progreso || {};
+        const progreso = [];
+
+        for (let i = 0; i < plan.length; i++) {
+            progreso[i] = progresoOriginal[i] === true;
+        }
+      
+
+        const dayInfoContainers = document.querySelectorAll(".day-info");
+        const dayLabels = document.querySelectorAll(".day-lesson-name");
+
+        plan.forEach((item, index) => {
+            if (dayLabels[index]) {
+                dayLabels[index].textContent = `Dia ${index + 1}: ${item.tema}`;
+            }
+            if (dayInfoContainers[index]) {
+                const statusLabel = dayInfoContainers[index].querySelector(".day-status");
+                if (statusLabel) {
+                    statusLabel.textContent = progreso[index] ? "Completado" : "Pendiente";
+                    statusLabel.className = "day-status " + (progreso[index] ? "done" : "pendant");
+                }
+            }
+        });
+
+       
+        const completed = progreso.filter(d => d).length;
+        const progressPercent = Math.round((completed / plan.length) * 100);
+
+        const progressBar = document.querySelector(".progress-bar");
+        const progressLabel = document.querySelector(".progress-percentage");
+
+        if (progressBar) progressBar.style.width = `${progressPercent}%`;
+        if (progressLabel) progressLabel.textContent = `${progressPercent}%`;
+
+    } catch (err) {
+        console.error("Error cargando el progreso:", err);
+    }
+}
+
+        loadProgress();
+
+        function startLesson(dayIndex) {
+            sessionStorage.setItem("currentLesson", dayIndex);
+            window.location.href = "question-page.html";
+        }
+    </script>
+
+
 </body>
 </html>

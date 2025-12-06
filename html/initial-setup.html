@@ -22,107 +22,205 @@
         </nav>
     </header>
 
-    <main class="content">
-        <div class="content-container">
-            <p class="container-title centered">Configura tus objetivos de aprendizaje.</p>
-            <label class="options-title">Lenguaje:</label>
-            <div class="slider">
-                <button class="arrow left">◀</button>
+    <form action="../php/generate_plan.php" method="POST" id="setupForm">
+        <main class="content">
+            <div class="content-container">
+                <p class="container-title centered">Configura tus objetivos de aprendizaje.</p>
+                <label class="options-title">Lenguaje:</label>
+                <div class="slider">
+                    <button type="button" class="arrow left">◀</button>
 
-                <div class="slider-window">
-                    <div class="slider-track">
-                        <button type="button" class="btn-secondary option">
-                            <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon"> Inglés
-                        </button>
-                        <button type="button" class="btn-secondary option">
-                            <img src="../img/french.png" alt="france-flag" class="option-icon"> Francés
-                        </button>
-                        <button type="button" class="btn-secondary option">
-                            <img src="../img/spanish.png" alt="spain-flag" class="option-icon"> Español
-                        </button>
+                    <div class="slider-window">
+                        <div class="slider-track">
+                            <button type="button" class="btn-secondary option">
+                                <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon"> Inglés
+                            </button>
+                            <button type="button" class="btn-secondary option">
+                                <img src="../img/french.png" alt="france-flag" class="option-icon"> Francés
+                            </button>
+                            <button type="button" class="btn-secondary option">
+                                <img src="../img/spanish.png" alt="spain-flag" class="option-icon"> Español
+                            </button>
+                        </div>
                     </div>
+
+                    <button type="button" class="arrow right">▶</button>
+                </div>
+                <div class="option-group" role="group">
+                    <button type="button" class="btn-secondary option">
+                        <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon">
+                        Inglés
+                    </button>
+                    <button type="button" class="btn-secondary option">
+                        <img src="../img/french.png" alt="france-flag" class="option-icon">
+                        Francés
+                    </button>
+                    <button type="button" class="btn-secondary option">
+                        <img src="../img/spanish.png" alt="spain-flag" class="option-icon">
+                        Español
+                    </button>
+                </div>
+                <label class="options-title">Nivel:</label>
+                <div class="slider">
+                    <button type="button" class="arrow left">◀</button>
+
+                    <div class="slider-window">
+                        <div class="slider-track">
+                            <button type="button" class="btn-secondary option">Básico</button>
+                            <button type="button" class="btn-secondary option">Intermedio</button>
+                            <button type="button" class="btn-secondary option">Avanzado</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="arrow right">▶</button>
+                </div>
+                <div class="option-group" role="group">
+                    <button type="button" class="btn-secondary option">Básico</button>
+                    <button type="button" class="btn-secondary option">Intermedio</button>
+                    <button type="button" class="btn-secondary option">Avanzado</button>
+                </div>
+                <label class="options-title">Objetivos:</label>
+                <div class="slider">
+                    <button type="button" class="arrow left">◀</button>
+
+                    <div class="slider-window">
+                        <div class="slider-track">
+                            <button type="button" class="btn-secondary option">Viajes</button>
+                            <button type="button" class="btn-secondary option">Negocios</button>
+                            <button type="button" class="btn-secondary option">Educación</button>
+                        </div>
+                    </div>
+
+                    <button class="arrow right">▶</button>
+                </div>
+                <div type="button" class="option-group" role="group">
+                    <button type="button" class="btn-secondary option">Viajes</button>
+                    <button type="button" class="btn-secondary option">Negocios</button>
+                    <button type="button" class="btn-secondary option">Educación</button>
                 </div>
 
-                <button class="arrow right">▶</button>
-            </div>
-            <div class="option-group" role="group">
-                <button type="button" class="btn-secondary option">
-                    <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon">
-                    Inglés
-                </button>
-                <button type="button" class="btn-secondary option">
-                    <img src="../img/french.png" alt="france-flag" class="option-icon">
-                    Francés
-                </button>
-                <button type="button" class="btn-secondary option">
-                    <img src="../img/spanish.png" alt="spain-flag" class="option-icon">
-                    Español
-                </button>
-            </div>
-            <label class="options-title">Nivel:</label>
-            <div class="slider">
-                <button class="arrow left">◀</button>
+                <input type="hidden" name="user_id" value="1" id="user_id"> 
+                <input type="hidden" name="lenguaje" id="lenguaje">
+                <input type="hidden" name="nivel" id="nivel">
+                <input type="hidden" name="objetivo" id="objetivo">
 
-                <div class="slider-window">
-                    <div class="slider-track">
-                        <button type="button" class="btn-secondary option">Básico</button>
-                        <button type="button" class="btn-secondary option">Intermedio</button>
-                        <button type="button" class="btn-secondary option">Avanzado</button>
-                    </div>
-                </div>
-
-                <button class="arrow right">▶</button>
+                <a href="#" class="btn-primary content-button">Generar plan</a>
             </div>
-            <div class="option-group" role="group">
-                <button type="button" class="btn-secondary option">Básico</button>
-                <button type="button" class="btn-secondary option">Intermedio</button>
-                <button type="button" class="btn-secondary option">Avanzado</button>
-            </div>
-            <label class="options-title">Objetivos:</label>
-            <div class="slider">
-                <button class="arrow left">◀</button>
-
-                <div class="slider-window">
-                    <div class="slider-track">
-                        <button type="button" class="btn-secondary option">Viajes</button>
-                        <button type="button" class="btn-secondary option">Negocios</button>
-                        <button type="button" class="btn-secondary option">Educación</button>
-                    </div>
-                </div>
-
-                <button class="arrow right">▶</button>
-            </div>
-            <div class="option-group" role="group">
-                <button type="button" class="btn-secondary option">Viajes</button>
-                <button type="button" class="btn-secondary option">Negocios</button>
-                <button type="button" class="btn-secondary option">Educación</button>
-            </div>
-            <a href="#" class="btn-primary content-button" onclick="window.location.href='progress-page.html'">Generar plan</a>
-        </div>
-    </main>
+            
+        </main>
+    </form>
     <script>
-        document.querySelectorAll(".slider").forEach(slider => {
-            const track = slider.querySelector(".slider-track");
-            const options = track.children;
-            let index = 0;
+    
+    const updateSlider = (slider, track, options, index) => {
+        track.style.transform = `translateX(-${index * 210}px)`;
 
-            const getOptionWidth = () => options[0].offsetWidth;
+        const selectedBtn = options[index];
 
-            const update = () => {
-                const width = getOptionWidth();
-                track.style.transform = `translateX(-${index * 210}px)`;
-            }
+        const group = slider.nextElementSibling;
+        if (group && group.classList.contains("option-group")) {
+            group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
 
-            slider.querySelector(".left").addEventListener("click", () => {
-                index = (index - 1 + options.length) % options.length;
-                update();
+            
+            const text = selectedBtn.textContent.trim();
+            const match = Array.from(group.children).find(b => {
+               
+                let buttonText = b.textContent.trim();
+                
+                if (buttonText.includes("Inglés") && text === "Inglés") return true;
+                if (buttonText.includes("Francés") && text === "Francés") return true;
+                if (buttonText.includes("Español") && text === "Español") return true;
+                
+                return buttonText === text;
             });
+            if (match) match.classList.add("selected");
 
-            slider.querySelector(".right").addEventListener("click", () => {
-                index = (index + 1) % options.length;
-                update();
+          
+            const label = slider.previousElementSibling.textContent.trim();
+            if (label.includes("Lenguaje")) document.getElementById("lenguaje").value = text;
+            if (label.includes("Nivel")) document.getElementById("nivel").value = text;
+            if (label.includes("Objetivos")) document.getElementById("objetivo").value = text;
+        }
+        return index; 
+    };
+
+  
+    document.querySelectorAll(".slider").forEach(slider => {
+        const track = slider.querySelector(".slider-track");
+        const options = Array.from(track.children);
+        let index = 0; 
+
+        
+        const currentUpdate = () => {
+            index = updateSlider(slider, track, options, index);
+        };
+
+        slider.querySelector(".left").addEventListener("click", e => {
+            e.preventDefault();
+            index = (index - 1 + options.length) % options.length;
+            currentUpdate();
+        });
+
+        slider.querySelector(".right").addEventListener("click", e => {
+            e.preventDefault();
+            index = (index + 1) % options.length;
+            currentUpdate();
+        });
+
+        
+        slider.dataset.index = index;
+        currentUpdate();
+    });
+
+    
+    document.querySelectorAll(".option-group").forEach(group => {
+        group.querySelectorAll(".option").forEach(btn => {
+            btn.addEventListener("click", () => {
+                
+                group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+                btn.classList.add("selected");
+
+                const label = group.previousElementSibling.textContent.trim();
+                const slider = group.previousElementSibling;
+                const text = btn.textContent.trim();
+                
+             
+                const track = slider.querySelector(".slider-track");
+                const options = Array.from(track.children);
+
+                
+                let newIndex = options.findIndex(option => {
+                    let optionText = option.textContent.trim();
+                
+                    if (optionText.includes("Inglés") && text === "Inglés") return true;
+                    if (optionText.includes("Francés") && text === "Francés") return true;
+                    if (optionText.includes("Español") && text === "Español") return true;
+                    return optionText === text;
+                });
+
+                if (newIndex !== -1) {
+                    
+                    let currentIndex = parseInt(slider.dataset.index) || 0;
+                    if (currentIndex !== newIndex) {
+                        slider.querySelector(".slider-track").style.transform = `translateX(-${newIndex * 210}px)`;
+                        slider.dataset.index = newIndex;
+                    }
+                }
+
+
+               
+                if (label.includes("Lenguaje")) document.getElementById("lenguaje").value = text;
+                if (label.includes("Nivel")) document.getElementById("nivel").value = text;
+                if (label.includes("Objetivos")) document.getElementById("objetivo").value = text;
             });
         });
-    </script>
+    });
+    
+    
+    document.querySelector(".content-button").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("setupForm").submit();
+    });
+</script>
+
 </body>
 </html>

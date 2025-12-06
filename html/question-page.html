@@ -38,8 +38,113 @@
             <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">Bien hecho</button>
             <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">Bien dicho</button>
             </div>
-            <a href="correct-answer.html" class="btn-primary content-button">Enviar</a>
+            <button class="btn-primary content-button" id="send-btn">Enviar</button>
         </div>
     </main>
+ <script>
+let preguntas = [];
+let index = 0; 
+let selectedButton = null;
+
+const preguntaText = document.querySelector(".question");
+const progressLabel = document.querySelector(".container-title");
+const optionsContainer = document.querySelector(".answers");
+const sendBtn = document.querySelector(".content-button");
+
+
+fetch("../php/get_questions.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ day: sessionStorage.getItem("currentLesson") })
+})
+.then(r => r.json())
+.then(data => {
+    preguntas = data.preguntas;
+    cargarPregunta();
+})
+.catch(err => console.error("Error cargando preguntas:", err));
+
+
+function cargarPregunta() {
+    const p = preguntas[index];
+
+    selectedButton = null;
+
+    preguntaText.innerHTML = p.pregunta;
+    progressLabel.innerText = `Ejercicio ${index + 1} de 3`;
+
+    optionsContainer.innerHTML = "";
+
+    p.opciones.forEach(op => {
+        const btn = document.createElement("button");
+        btn.className = "btn-secondary option";
+        btn.innerText = op;
+
+        btn.onclick = () => {
+            selectedButton = btn;
+
+            
+            document.querySelectorAll(".option").forEach(b => {
+                b.classList.remove("selected", "correct", "wrong");
+            });
+
+            btn.classList.add("selected");
+        };
+
+        optionsContainer.appendChild(btn);
+    });
+}
+
+
+
+sendBtn.onclick = () => {
+    if (!selectedButton) return;
+
+    const correcta = preguntas[index].correcta;
+
+   
+    document.querySelectorAll(".option").forEach(btn => {
+        if (btn.innerText === correcta) {
+            btn.classList.add("correct");
+        }
+    });
+
+  
+    if (selectedButton.innerText !== correcta) {
+        selectedButton.classList.add("wrong");
+        return; 
+    }
+
+    
+    setTimeout(() => {
+        index++;
+
+        if (index >= 3) {
+            marcarDiaCompletado();
+        } else {
+            cargarPregunta();
+        }
+    }, 800);
+};
+
+
+
+function marcarDiaCompletado() {
+    const day = sessionStorage.getItem("currentLesson");
+
+    fetch("../php/markprogress.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ day })
+    })
+    .then(r => r.json())
+    .then(() => {
+        window.location.href = "progress-page.html";
+    })
+    .catch(err => console.error("Error guardando progreso:", err));
+}
+</script>
+
+
 </body>
 </html>
