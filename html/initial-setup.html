@@ -99,128 +99,101 @@
                     <button type="button" class="btn-secondary option">Educación</button>
                 </div>
 
-                <input type="hidden" name="user_id" value="1" id="user_id"> 
+                <input type="hidden" name="user_id" value="1" id="user_id">
                 <input type="hidden" name="lenguaje" id="lenguaje">
                 <input type="hidden" name="nivel" id="nivel">
                 <input type="hidden" name="objetivo" id="objetivo">
 
                 <a href="#" class="btn-primary content-button">Generar plan</a>
             </div>
-            
+
         </main>
     </form>
     <script>
-    
-    const updateSlider = (slider, track, options, index) => {
-        track.style.transform = `translateX(-${index * 210}px)`;
+        document.addEventListener("DOMContentLoaded", () => {
+            const fieldMap = {
+                "Lenguaje": "lenguaje",
+                "Nivel": "nivel",
+                "Objetivos": "objetivo"
+            };
 
-        const selectedBtn = options[index];
-
-        const group = slider.nextElementSibling;
-        if (group && group.classList.contains("option-group")) {
-            group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
-
-            
-            const text = selectedBtn.textContent.trim();
-            const match = Array.from(group.children).find(b => {
-               
-                let buttonText = b.textContent.trim();
-                
-                if (buttonText.includes("Inglés") && text === "Inglés") return true;
-                if (buttonText.includes("Francés") && text === "Francés") return true;
-                if (buttonText.includes("Español") && text === "Español") return true;
-                
-                return buttonText === text;
-            });
-            if (match) match.classList.add("selected");
-
-          
-            const label = slider.previousElementSibling.textContent.trim();
-            if (label.includes("Lenguaje")) document.getElementById("lenguaje").value = text;
-            if (label.includes("Nivel")) document.getElementById("nivel").value = text;
-            if (label.includes("Objetivos")) document.getElementById("objetivo").value = text;
-        }
-        return index; 
-    };
-
-  
-    document.querySelectorAll(".slider").forEach(slider => {
-        const track = slider.querySelector(".slider-track");
-        const options = Array.from(track.children);
-        let index = 0; 
-
-        
-        const currentUpdate = () => {
-            index = updateSlider(slider, track, options, index);
-        };
-
-        slider.querySelector(".left").addEventListener("click", e => {
-            e.preventDefault();
-            index = (index - 1 + options.length) % options.length;
-            currentUpdate();
-        });
-
-        slider.querySelector(".right").addEventListener("click", e => {
-            e.preventDefault();
-            index = (index + 1) % options.length;
-            currentUpdate();
-        });
-
-        
-        slider.dataset.index = index;
-        currentUpdate();
-    });
-
-    
-    document.querySelectorAll(".option-group").forEach(group => {
-        group.querySelectorAll(".option").forEach(btn => {
-            btn.addEventListener("click", () => {
-                
-                group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
-                btn.classList.add("selected");
-
-                const label = group.previousElementSibling.textContent.trim();
-                const slider = group.previousElementSibling;
-                const text = btn.textContent.trim();
-                
-             
+            function moveSlider(slider, index) {
                 const track = slider.querySelector(".slider-track");
-                const options = Array.from(track.children);
+                track.style.transform = `translateX(-${index * 210}px)`;
+                slider.dataset.index = index;
+            }
 
-                
-                let newIndex = options.findIndex(option => {
-                    let optionText = option.textContent.trim();
-                
-                    if (optionText.includes("Inglés") && text === "Inglés") return true;
-                    if (optionText.includes("Francés") && text === "Francés") return true;
-                    if (optionText.includes("Español") && text === "Español") return true;
-                    return optionText === text;
+            function syncButtons(group, text) {
+                group.querySelectorAll(".option").forEach(btn => {
+                    btn.classList.toggle("selected", btn.textContent.trim() === text);
+                });
+            }
+
+            function updateHiddenField(sectionName, value) {
+                const hiddenId = fieldMap[sectionName];
+                if (hiddenId) {
+                    document.getElementById(hiddenId).value = value;
+                }
+            }
+
+            function findOptionIndex(slider, text) {
+                const options = Array.from(slider.querySelectorAll(".slider-track > div"));
+
+                return options.findIndex(option => {
+                    const t = option.textContent.trim();
+                    return t.includes(text) || t === text;
+                });
+            }
+
+            document.querySelectorAll(".option-group").forEach(group => {
+                group.addEventListener("click", e => {
+                    const btn = e.target.closest(".option");
+                    if (!btn) return;
+
+                    const text = btn.textContent.trim();
+                    const section = group.dataset.section;
+                    const container = group.closest(".options-container");
+                    const slider = container.querySelector(".slider");
+
+                    syncButtons(group, text);
+
+                    if (slider) {
+                        const index = findOptionIndex(slider, text);
+                        if (index !== -1) moveSlider(slider, index);
+                    }
+
+                    updateHiddenField(section, text);
+                });
+            });
+
+            document.querySelectorAll(".slider").forEach(slider => {
+                const track = slider.querySelector(".slider-track");
+                const container = slider.closest(".options-container");
+                const group = container.querySelector(".option-group");
+                const section = group.dataset.section;
+
+                let index = 0;
+                const total = track.children.length;
+
+                const updateMobile = () => {
+                    const text = track.children[index].textContent.trim();
+
+                    moveSlider(slider, index);
+                    syncButtons(group, text);
+                    updateHiddenField(section, text);
+                };
+
+                slider.querySelector(".left").addEventListener("click", () => {
+                    index = (index - 1 + total) % total;
+                    updateMobile();
                 });
 
-                if (newIndex !== -1) {
-                    
-                    let currentIndex = parseInt(slider.dataset.index) || 0;
-                    if (currentIndex !== newIndex) {
-                        slider.querySelector(".slider-track").style.transform = `translateX(-${newIndex * 210}px)`;
-                        slider.dataset.index = newIndex;
-                    }
-                }
-
-
-               
-                if (label.includes("Lenguaje")) document.getElementById("lenguaje").value = text;
-                if (label.includes("Nivel")) document.getElementById("nivel").value = text;
-                if (label.includes("Objetivos")) document.getElementById("objetivo").value = text;
+                slider.querySelector(".right").addEventListener("click", () => {
+                    index = (index + 1) % total;
+                    updateMobile();
+                });
             });
         });
-    });
-    
-    
-    document.querySelector(".content-button").addEventListener("click", function (e) {
-        e.preventDefault();
-        document.getElementById("setupForm").submit();
-    });
-</script>
-
+    </script>
 </body>
 </html>
