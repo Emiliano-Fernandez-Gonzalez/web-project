@@ -89,7 +89,7 @@ html,
 }
 
 .option-icon {
-    width: 24p;
+    width: 24px;
     height: 24px;
     object-fit: contain;
     margin-right: 8px;
@@ -303,10 +303,19 @@ header, .nav-bar {
     font-weight: 600;
     transition: background 0.3s ease;
     max-width: 200px;
+
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: normal;
+    appearance: none;
 }
 
 .btn-primary:hover {
-    background-color: #0056d4;
+    background-color: black;
 }
 
 .login-form > .btn-primary {

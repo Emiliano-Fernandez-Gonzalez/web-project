@@ -46,7 +46,7 @@
 
                     <button type="button" class="arrow right">▶</button>
                 </div>
-                <div class="option-group" role="group">
+                <div class="option-group" data-target="lenguaje" role="group">
                     <button type="button" class="btn-secondary option">
                         <img src="../img/english.png" alt="united-kingdom-flag" class="option-icon">
                         Inglés
@@ -74,7 +74,7 @@
 
                     <button type="button" class="arrow right">▶</button>
                 </div>
-                <div class="option-group" role="group">
+                <div class="option-group" data-target="nivel" role="group">
                     <button type="button" class="btn-secondary option">Básico</button>
                     <button type="button" class="btn-secondary option">Intermedio</button>
                     <button type="button" class="btn-secondary option">Avanzado</button>
@@ -93,7 +93,7 @@
 
                     <button class="arrow right">▶</button>
                 </div>
-                <div type="button" class="option-group" role="group">
+                <div class="option-group" data-target="objetivo" role="group">
                     <button type="button" class="btn-secondary option">Viajes</button>
                     <button type="button" class="btn-secondary option">Negocios</button>
                     <button type="button" class="btn-secondary option">Educación</button>
@@ -104,96 +104,78 @@
                 <input type="hidden" name="nivel" id="nivel">
                 <input type="hidden" name="objetivo" id="objetivo">
 
-                <a href="#" class="btn-primary content-button">Generar plan</a>
+                <button type="submit" class="btn-primary content-button">Generar plan</button>
             </div>
 
         </main>
     </form>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const fieldMap = {
-                "Lenguaje": "lenguaje",
-                "Nivel": "nivel",
-                "Objetivos": "objetivo"
-            };
+        const updateSlider = (slider, track, options, index) => {
+        track.style.transform = `translateX(-${index * 210}px)`;
 
-            function moveSlider(slider, index) {
-                const track = slider.querySelector(".slider-track");
-                track.style.transform = `translateX(-${index * 210}px)`;
-                slider.dataset.index = index;
-            }
+        const selectedBtn = options[index];
 
-            function syncButtons(group, text) {
-                group.querySelectorAll(".option").forEach(btn => {
-                    btn.classList.toggle("selected", btn.textContent.trim() === text);
-                });
-            }
+        const group = slider.nextElementSibling;
+        if (group && group.classList.contains("option-group")) {
+            group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
 
-            function updateHiddenField(sectionName, value) {
-                const hiddenId = fieldMap[sectionName];
-                if (hiddenId) {
-                    document.getElementById(hiddenId).value = value;
+            const text = selectedBtn.textContent.trim();
+
+            const match = Array.from(group.children).find(b => b.textContent.trim() === text);
+            if (match) match.classList.add("selected");
+
+            const targetId = group.dataset.target;
+            if (targetId) document.getElementById(targetId).value = text;
+        }
+
+        return index;
+    };
+
+    document.querySelectorAll(".slider").forEach(slider => {
+        const track = slider.querySelector(".slider-track");
+        const options = Array.from(track.children);
+        let index = 0;
+
+        const currentUpdate = () => {
+            index = updateSlider(slider, track, options, index);
+        };
+
+        slider.querySelector(".left").addEventListener("click", e => {
+            e.preventDefault();
+            index = (index - 1 + options.length) % options.length;
+            currentUpdate();
+        });
+
+        slider.querySelector(".right").addEventListener("click", e => {
+            e.preventDefault();
+            index = (index + 1) % options.length;
+            currentUpdate();
+        });
+
+        slider.dataset.index = index;
+        currentUpdate();
+    });
+
+    document.querySelectorAll(".option-group").forEach(group => {
+        const targetId = group.dataset.target;
+
+        group.querySelectorAll(".option").forEach(btn => {
+            btn.addEventListener("click", () => {
+                group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+                btn.classList.add("selected");
+
+                if (targetId) document.getElementById(targetId).value = btn.textContent.trim();
+
+                const slider = group.previousElementSibling;
+                if (slider && slider.classList.contains("slider")) {
+                    const track = slider.querySelector(".slider-track");
+                    const options = Array.from(track.children);
+                    const index = options.findIndex(o => o.textContent.trim() === btn.textContent.trim());
+                    if (index >= 0) track.style.transform = `translateX(-${index * 210}px)`;
                 }
-            }
-
-            function findOptionIndex(slider, text) {
-                const options = Array.from(slider.querySelectorAll(".slider-track > div"));
-
-                return options.findIndex(option => {
-                    const t = option.textContent.trim();
-                    return t.includes(text) || t === text;
-                });
-            }
-
-            document.querySelectorAll(".option-group").forEach(group => {
-                group.addEventListener("click", e => {
-                    const btn = e.target.closest(".option");
-                    if (!btn) return;
-
-                    const text = btn.textContent.trim();
-                    const section = group.dataset.section;
-                    const container = group.closest(".options-container");
-                    const slider = container.querySelector(".slider");
-
-                    syncButtons(group, text);
-
-                    if (slider) {
-                        const index = findOptionIndex(slider, text);
-                        if (index !== -1) moveSlider(slider, index);
-                    }
-
-                    updateHiddenField(section, text);
-                });
-            });
-
-            document.querySelectorAll(".slider").forEach(slider => {
-                const track = slider.querySelector(".slider-track");
-                const container = slider.closest(".options-container");
-                const group = container.querySelector(".option-group");
-                const section = group.dataset.section;
-
-                let index = 0;
-                const total = track.children.length;
-
-                const updateMobile = () => {
-                    const text = track.children[index].textContent.trim();
-
-                    moveSlider(slider, index);
-                    syncButtons(group, text);
-                    updateHiddenField(section, text);
-                };
-
-                slider.querySelector(".left").addEventListener("click", () => {
-                    index = (index - 1 + total) % total;
-                    updateMobile();
-                });
-
-                slider.querySelector(".right").addEventListener("click", () => {
-                    index = (index + 1) % total;
-                    updateMobile();
-                });
             });
         });
+    });
     </script>
 </body>
 </html>
