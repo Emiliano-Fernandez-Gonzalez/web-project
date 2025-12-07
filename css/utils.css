@@ -315,7 +315,7 @@ header, .nav-bar {
 }
 
 .btn-primary:hover {
-    background-color: black;
+    background-color: var(--languide-dark-blue);
 }
 
 .login-form > .btn-primary {
