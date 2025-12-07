@@ -314,6 +314,10 @@ header, .nav-bar {
     appearance: none;
 }
 
+.btn-primary.recovery{
+    margin-top: 30px;
+}
+
 .btn-primary:hover {
     background-color: var(--languide-dark-blue);
 }
@@ -623,7 +627,7 @@ header, .nav-bar {
 
 .nav-mobile a {
     text-decoration: none;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: var(--languide-blue);
     font-weight: 600;
     transition: color 0.3s;
