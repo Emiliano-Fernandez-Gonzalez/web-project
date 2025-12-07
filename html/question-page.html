@@ -11,16 +11,34 @@
 <body class="question-page-body">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-3">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-4">
-    <header>
-        <nav class="nav-bar">
-            <ul class="nav-elements">
-                <li><a href="landing-page.html">Inicio</a></li>
-                <li><a href="#">Planes</a></li>
-                <li><a href="#">Idiomas</a></li>
-                <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
-            </ul>
-        </nav>
-    </header>
+    <header class="navbar">
+                <div class="logo">Languide</div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <nav class="nav-desktop">
+                    <ul class="nav-links">
+                        <li><a href="landing-page.html">Inicio</a></li>
+                        <li><a href="#">Planes</a></li>
+                        <li><a href="#">Idiomas</a></li>
+                        <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
+                    </ul>
+                </nav>
+        </header>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <nav class="nav-mobile" id="mobileMenu">
+        <ul>
+            <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
+            <li><a href="landing-page.html">Inicio</a></li>
+            <li><a href="#">Planes</a></li>
+            <li><a href="#">Idiomas</a></li>
+        </ul>
+    </nav>
 
     <main class="content">
         <div class="content-container">

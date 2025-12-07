@@ -7,13 +7,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../css/utils.css" />
-        <link rel="stylesheet" href="../css/landing-copy.css">
+        <link rel="stylesheet" href="../css/landing.css">
     </head>
     <body>
         <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-1">
         <header class="navbar">
                 <div class="logo">Languide</div>
-                <nav>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <nav class="nav-desktop">
                     <ul class="nav-links">
                         <li><a href="landing-page.html">Inicio</a></li>
                         <li><a href="#">Planes</a></li>
@@ -21,6 +28,15 @@
                     </ul>
                 </nav>
         </header>
+        <div class="nav-overlay" id="navOverlay"></div>
+
+        <nav class="nav-mobile" id="mobileMenu">
+            <ul>
+                <li><a href="landing-page.html">Inicio</a></li>
+                <li><a href="#">Planes</a></li>
+                <li><a href="#">Idiomas</a></li>
+            </ul>
+        </nav>
 
         <main class="hero">
             <div class="hero-content">
@@ -41,5 +57,6 @@
             </div>
         </main>
 
+        <script src="../js/navbar.js"></script>
     </body>
 </html>

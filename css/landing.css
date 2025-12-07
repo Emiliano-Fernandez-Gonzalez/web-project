@@ -28,7 +28,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px 80px 20px 80px;
-    z-index: 2;
+    z-index: 2000;
 }
 
 .navbar nav {
@@ -195,6 +195,12 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between !important;
+    }
+}
+
 @media (max-width: 600px) {
     .navbar {
         visibility: hidden;
@@ -253,8 +259,8 @@ body {
 
     }
     .shape-1 {
-        bottom: 20vh !important;
-        left: 50px !important;
+        bottom: 15vh !important;
+        left: 60px !important;
         width: 400px !important;
         rotate: 25deg;
     }

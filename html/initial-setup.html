@@ -11,16 +11,35 @@
 <body class="initial-setup-body">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-3">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-4">
-    <header>
-        <nav class="nav-bar">
-            <ul class="nav-elements">
-                <li><a href="landing-page.html">Inicio</a></li>
-                <li><a href="#">Planes</a></li>
-                <li><a href="#">Idiomas</a></li>
-                <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
-            </ul>
-        </nav>
-    </header>
+
+    <header class="navbar">
+                <div class="logo">Languide</div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <nav class="nav-desktop">
+                    <ul class="nav-links">
+                        <li><a href="landing-page.html">Inicio</a></li>
+                        <li><a href="#">Planes</a></li>
+                        <li><a href="#">Idiomas</a></li>
+                        <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
+                    </ul>
+                </nav>
+        </header>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <nav class="nav-mobile" id="mobileMenu">
+        <ul>
+            <a href="#"><img src="../img/user-pic.png" alt="Imagen de perfil del usuario" class="user-pic"></a>
+            <li><a href="landing-page.html">Inicio</a></li>
+            <li><a href="#">Planes</a></li>
+            <li><a href="#">Idiomas</a></li>
+        </ul>
+    </nav>
 
     <form action="../php/generate_plan.php" method="POST" id="setupForm">
         <main class="content">
@@ -109,73 +128,75 @@
 
         </main>
     </form>
+
     <script>
         const updateSlider = (slider, track, options, index) => {
-        track.style.transform = `translateX(-${index * 210}px)`;
+            track.style.transform = `translateX(-${index * 210}px)`;
 
-        const selectedBtn = options[index];
+            const selectedBtn = options[index];
 
-        const group = slider.nextElementSibling;
-        if (group && group.classList.contains("option-group")) {
-            group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+            const group = slider.nextElementSibling;
+            if (group && group.classList.contains("option-group")) {
+                group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
 
-            const text = selectedBtn.textContent.trim();
+                const text = selectedBtn.textContent.trim();
 
-            const match = Array.from(group.children).find(b => b.textContent.trim() === text);
-            if (match) match.classList.add("selected");
+                const match = Array.from(group.children).find(b => b.textContent.trim() === text);
+                if (match) match.classList.add("selected");
 
-            const targetId = group.dataset.target;
-            if (targetId) document.getElementById(targetId).value = text;
-        }
+                const targetId = group.dataset.target;
+                if (targetId) document.getElementById(targetId).value = text;
+            }
 
-        return index;
-    };
-
-    document.querySelectorAll(".slider").forEach(slider => {
-        const track = slider.querySelector(".slider-track");
-        const options = Array.from(track.children);
-        let index = 0;
-
-        const currentUpdate = () => {
-            index = updateSlider(slider, track, options, index);
+            return index;
         };
 
-        slider.querySelector(".left").addEventListener("click", e => {
-            e.preventDefault();
-            index = (index - 1 + options.length) % options.length;
+        document.querySelectorAll(".slider").forEach(slider => {
+            const track = slider.querySelector(".slider-track");
+            const options = Array.from(track.children);
+            let index = 0;
+
+            const currentUpdate = () => {
+                index = updateSlider(slider, track, options, index);
+            };
+
+            slider.querySelector(".left").addEventListener("click", e => {
+                e.preventDefault();
+                index = (index - 1 + options.length) % options.length;
+                currentUpdate();
+            });
+
+            slider.querySelector(".right").addEventListener("click", e => {
+                e.preventDefault();
+                index = (index + 1) % options.length;
+                currentUpdate();
+            });
+
+            slider.dataset.index = index;
             currentUpdate();
         });
 
-        slider.querySelector(".right").addEventListener("click", e => {
-            e.preventDefault();
-            index = (index + 1) % options.length;
-            currentUpdate();
-        });
+        document.querySelectorAll(".option-group").forEach(group => {
+            const targetId = group.dataset.target;
 
-        slider.dataset.index = index;
-        currentUpdate();
-    });
+            group.querySelectorAll(".option").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
+                    btn.classList.add("selected");
 
-    document.querySelectorAll(".option-group").forEach(group => {
-        const targetId = group.dataset.target;
+                    if (targetId) document.getElementById(targetId).value = btn.textContent.trim();
 
-        group.querySelectorAll(".option").forEach(btn => {
-            btn.addEventListener("click", () => {
-                group.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
-                btn.classList.add("selected");
-
-                if (targetId) document.getElementById(targetId).value = btn.textContent.trim();
-
-                const slider = group.previousElementSibling;
-                if (slider && slider.classList.contains("slider")) {
-                    const track = slider.querySelector(".slider-track");
-                    const options = Array.from(track.children);
-                    const index = options.findIndex(o => o.textContent.trim() === btn.textContent.trim());
-                    if (index >= 0) track.style.transform = `translateX(-${index * 210}px)`;
-                }
+                    const slider = group.previousElementSibling;
+                    if (slider && slider.classList.contains("slider")) {
+                        const track = slider.querySelector(".slider-track");
+                        const options = Array.from(track.children);
+                        const index = options.findIndex(o => o.textContent.trim() === btn.textContent.trim());
+                        if (index >= 0) track.style.transform = `translateX(-${index * 210}px)`;
+                    }
+                });
             });
         });
-    });
     </script>
+    <script src="../js/navbar.js"></script>
 </body>
 </html>
