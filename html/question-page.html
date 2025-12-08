@@ -26,11 +26,11 @@
                 <button class="exit-lesson-btn" onclick="cancelarLeccion()">✕</button>
             </div>
 
-            <p class="question">¿Cómo se traduce <em><strong>welcome</strong></em>?</p>
+            <p class="question"><em><strong>Generando preguntas...</strong></em></p>
             <div class="answers">
-            <button type="button" class="btn-secondary option">Bienvenido</button>
-            <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">Bien hecho</button>
-            <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">Bien dicho</button>
+            <button type="button" class="btn-secondary option">. . .</button>
+            <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">. . .</button>
+            <button type="button" class="btn-secondary option" onclick="window.location.href='wrong-answer.html'">. . .</button>
             </div>
             <button class="btn-primary content-button" id="send-btn">Enviar</button>
         </div>
@@ -132,7 +132,7 @@ function marcarDiaCompletado() {
     })
     .then(r => r.json())
     .then(() => {
-        window.location.href = "progress-page.html";
+        window.location.href = "lesson-completed.html";
     })
     .catch(err => console.error("Error guardando progreso:", err));
 }
@@ -144,7 +144,5 @@ function cancelarLeccion() {
     }
 }
 </script>
-
-
 </body>
 </html>

@@ -220,6 +220,7 @@ header, .nav-bar {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 0px;
 }
 
 .progress-info {
@@ -237,10 +238,6 @@ header, .nav-bar {
     background-color: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
-}
-
-.progress-status.question-progress {
-    margin: 0;
 }
 
 .progress-bar {
@@ -414,8 +411,9 @@ header, .nav-bar {
     background-color: var(--languide-white);
     font-size: 2rem;
     color: var(--languide-blue);
-    margin-bottom: 5px;
-    margin-right: 40px;
+    margin-right: 30px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 .selected.wrong {
