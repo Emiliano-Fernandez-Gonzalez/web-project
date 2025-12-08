@@ -40,19 +40,22 @@
                     })
                     .then(r => r.text())
                     .then(res => {
-                        if (res === "OK") {
+                        if (res === "EX_PLAN") {
+                            window.location.href = "progress-page.html";
+                        } else if (res === "NO_PLAN") {
                             window.location.href = "initial-setup.html";
                         } else {
                             alert(res);
                         }
                     });
+
                 }
             </script>
         </form>
 
         <div class="login-links">
             <a href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-            <a href="signup-page.html">¿Aún no tienes una cuenta? Regístrate</a>
+            <a href="signup-page.html">¿Aún no tienes una cuenta? Regístrate</a>   
         </div>
     </div>
   </div>
