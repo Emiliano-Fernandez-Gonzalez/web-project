@@ -2,11 +2,11 @@
 
 Lenguajes y herramientas principales: HTML5, CSS3, JavaScript (Vanilla), PHP 8.1, MySQL, y Ollama para generación de contenido (IA).
 
-## 🔎 Resumen
+## Resumen
 
 Languide es una aplicación web responsiva para el aprendizaje de idiomas. Los usuarios se pueden registrar, iniciar sesión, configurar un plan de estudio (generado por IA) y practicar ejercicios que se generan dinámicamente. El sistema guarda el progreso por tema, marca temas como completados y muestra una barra de progreso visual.
 
-## 📁 Estructura del repositorio
+## Estructura del repositorio
 - `/html`
   - `landing-page.html`
   - `login-page.html`
@@ -36,14 +36,14 @@ Languide es una aplicación web responsiva para el aprendizaje de idiomas. Los u
 - `README.md`
 - `usuarios.sql`
 
-## ✅ Requisitos (local)
+## Requisitos (local)
 
 * PHP 8.1 (o 8.x compatible)
 * MySQL/MariaDB
 * Servidor web (Apache/Nginx) o entorno con Vagrant que sirva la carpeta html en http://localhost:8080/html/...
 * Navegador moderno
 
-## 🚀 Instalación y ejecución
+## Instalación y ejecución
 
 A continuación tienes dos opciones: ejecutar con Vagrant (si usas el Vagrantfile) o configurar manualmente un entorno LAMP/LEMP.
 
@@ -88,7 +88,7 @@ Abre en tu navegador:
 http://localhost/html/landing-page.html
 ```
 
-## 🗄️ Base de datos — configuración inicial
+## Base de datos — configuración inicial
 
 ```sql
 -- Usuarios
@@ -111,7 +111,7 @@ Desde consola (MySQL):
 mysql -u root -p < usuarios.sql
 ```
 
-### 🔧 Configuración del backend (PHP)
+### Configuración del backend (PHP)
 
 Copia un archivo de configuración (por ejemplo php/config.example.php) a php/db.php y adapta los datos:
 
@@ -140,7 +140,7 @@ return [
 
 * php/progress.php — devuelve plan y progreso para el usuario autenticado.
 
-## 🧭 Flujo de uso (usuario)
+## Flujo de uso (usuario)
 
 Registro → Login.
 
