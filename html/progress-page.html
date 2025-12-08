@@ -21,7 +21,6 @@
             word-break: keep-all;
         }
 
-
     </style>
 </head>
 <body class="progress-page-body">
@@ -80,32 +79,34 @@
                 <div class="days-statuses">
                     <div id="day-1" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(0)">▶</button>
                     </div>
                     <div id="day-2" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(1)">▶</button>
                     </div>
                     <div id="day-3" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(2)">▶</button>
                     </div>
                     <div id="day-4" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(3)">▶</button>
                     </div>
                     <div id="day-5" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(4)">▶</button>
                     </div>
                     <div id="day-6" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(5)">▶</button>
                     </div>
                     <div id="day-7" class="day-info">
                         <label class="day-status pendant">Pendiente</label>
-                        <button class="play-lesson" onclick="startLesson(6)">▶</button>
                     </div>
+                </div>
+                <div class="play-buttons">
+                    <button class="play-lesson" onclick="startLesson(0)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(1)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(2)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(3)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(4)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(5)">▶</button>
+                    <button class="play-lesson" onclick="startLesson(6)">▶</button>
                 </div>
             </div>
             <a href="landing-page.html" class="btn-primary content-button">Cerrar sesión</a>
@@ -113,7 +114,7 @@
 
         </div>
     </main>
-   <script>
+    <script>
         async function loadProgress() {
     try {
         const res = await fetch("../php/progress.php");
@@ -121,16 +122,14 @@
 
         if (!data.temario) return;
 
-        const plan = data.temario.plan; 
+        const plan = data.temario.plan;
 
-     
         const progresoOriginal = data.progreso || {};
         const progreso = [];
 
         for (let i = 0; i < plan.length; i++) {
             progreso[i] = progresoOriginal[i] === true;
         }
-      
 
         const dayInfoContainers = document.querySelectorAll(".day-info");
         const dayLabels = document.querySelectorAll(".day-lesson-name");
@@ -143,12 +142,11 @@
                 const statusLabel = dayInfoContainers[index].querySelector(".day-status");
                 if (statusLabel) {
                     statusLabel.textContent = progreso[index] ? "Completado" : "Pendiente";
-                    statusLabel.className = "day-status " + (progreso[index] ? "done" : "pendant");
+                    statusLabel.className = "day-status " + (progreso[index] ? "completed" : "pendant");
                 }
             }
         });
 
-       
         const completed = progreso.filter(d => d).length;
         const progressPercent = Math.round((completed / plan.length) * 100);
 
@@ -162,7 +160,6 @@
         console.error("Error cargando el progreso:", err);
     }
 }
-
         loadProgress();
 
         function startLesson(dayIndex) {
@@ -170,7 +167,6 @@
             window.location.href = "question-page.html";
         }
     </script>
-
-
+    <script src="../js/navbar.js"></script>
 </body>
 </html>
