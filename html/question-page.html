@@ -14,15 +14,17 @@
 
     <main class="content">
         <div class="content-container">
-            <div class="progress-status question-progress">
-                <p class="container-title">Ejercicio 1 de 3</p>
-                <div class="progress-info">
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 0%;"></div>
+            <div class="progress-status-container">
+                <div class="progress-status question-progress">
+                    <p class="container-title">Ejercicio 1 de 3</p>
+                    <div class="progress-info">
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%;"></div>
+                        </div>
                     </div>
                 </div>
+                <button class="exit-lesson-btn" onclick="cancelarLeccion()">✕</button>
             </div>
-            <button class="exit-lesson-btn" onclick="cancelarLeccion()">✕</button>
 
             <p class="question">¿Cómo se traduce <em><strong>welcome</strong></em>?</p>
             <div class="answers">
@@ -133,6 +135,13 @@ function marcarDiaCompletado() {
         window.location.href = "progress-page.html";
     })
     .catch(err => console.error("Error guardando progreso:", err));
+}
+
+function cancelarLeccion() {
+    const confirmar = confirm("¿Deseas salir de la lección? Tu progreso no se guardará.");
+    if (confirmar) {
+        window.location.href = "progress-page.html";
+    }
 }
 </script>
 

@@ -203,6 +203,12 @@ header, .nav-bar {
     background-color: var(--languide-white);
 }
 
+.progress-status-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
 .option-group {
     display: flex;
 }
@@ -233,8 +239,8 @@ header, .nav-bar {
     overflow: hidden;
 }
 
-.progress-status.question-progress.progress-container {
-    color: red;
+.progress-status.question-progress {
+    margin: 0;
 }
 
 .progress-bar {
@@ -256,8 +262,8 @@ header, .nav-bar {
 .days {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 11.2px;
+    margin-top: 20px;
     margin-left: 10px;
 }
 
@@ -266,6 +272,7 @@ header, .nav-bar {
     flex-direction: column;
     gap: 10px;
     margin-top: 15px;
+    margin-left: 10px;
 }
 
 .day-info {
@@ -400,6 +407,15 @@ header, .nav-bar {
 
 .play-lesson:hover {
     background-color: var(--languide-dark-blue);
+}
+
+.exit-lesson-btn {
+    border: none;
+    background-color: var(--languide-white);
+    font-size: 2rem;
+    color: var(--languide-blue);
+    margin-bottom: 5px;
+    margin-right: 40px;
 }
 
 .selected.wrong {

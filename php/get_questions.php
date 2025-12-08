@@ -61,7 +61,8 @@ Genera SOLO el siguiente JSON. NO INCLUYAS nada fuera del JSON:
 RESTRICCIONES ESTRICTAS:
 - Todas las preguntas deben ser para APRENDER el idioma "$lenguaje".
 - NO puedes generar preguntas sobre capitales, países o cultura.
-- NO pueden ser preguntas 
+- La cantidad de respuestas debe ser exactamente 3. PROHIBIDO GENERAR MÁS O MENOS DE 3 RESPUESTAS.
+- NO pueden ser preguntas
 - Tema del día: "$tema".
 - Nivel del usuario: "$nivel".
 - Objetivo: "$objetivo".
