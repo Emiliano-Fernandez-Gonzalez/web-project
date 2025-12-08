@@ -1,6 +1,6 @@
 <?php
 require "db.php";
-
+session_start();
 $usuario = $_POST['usuario'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
@@ -21,6 +21,7 @@ if ($stmt->num_rows > 0) {
 
 $stmt->close();
 
+
 $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
 
 
@@ -31,6 +32,11 @@ $stmt = $conn->prepare(
 $stmt->bind_param("sss", $usuario, $email, $hashed_pass);
 
 if ($stmt->execute()) {
+    $id_insertado = $conn->insert_id;
+
+    $_SESSION["id"] = $id_insertado;
+    $_SESSION["usuario"] = $usuario;
+
     echo "OK";
 } else {
     echo "Error al registrar";

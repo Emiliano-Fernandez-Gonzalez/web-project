@@ -19,7 +19,7 @@ if (!$lenguaje || !$nivel || !$objetivo) {
     die("Faltan datos");
 }
 
-
+//Cambiar la apiURL por una personal al usar la aplicación de forma local
 $apiUrl = "https://kevin-apocopic-edna.ngrok-free.dev/api/generate";
 
 $prompt = "
@@ -67,6 +67,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 $response = curl_exec($ch);
 curl_close($ch);
 
+//validar
 if (!$response) {
     die("Error al generar el plan");
 }

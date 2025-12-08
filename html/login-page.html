@@ -8,14 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/utils.css" />
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2598/2598830.png" type="image/x-icon">
 </head>
 <body class="login-page-body">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-1" loading="lazy">
     <img src="../img/abstract-blue-fig.png" alt="" class="bg-shape shape-2" loading="lazy">
 
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("../php/session_check.php")
+                .then(r => r.text())
+                .then(res => {
+                    if (res === "EX_PLAN") {
+                        window.location.href = "progress-page.html";
+                    } else if (res === "NO_PLAN") {
+                        window.location.href = "initial-setup.html";
+                    }
+                });
+            });
+            
+        </script>
     <div class="login-container">
         <div class="login-card">
         <h2>Inicia sesión en tu cuenta.</h2>
+
 
         <form class="login-form">
             <label for="usuario">Usuario</label>

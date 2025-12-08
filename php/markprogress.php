@@ -17,7 +17,7 @@ if (!$data || !isset($data["day"])) {
     echo json_encode(["error" => "No day"]);
     exit;
 }
-
+// day viene de question-page (guardado en la sesión)
 $dayIndex = intval($data["day"]);
 
 $stmt = $conn->prepare("SELECT progreso_json FROM usuarios WHERE id = ?");

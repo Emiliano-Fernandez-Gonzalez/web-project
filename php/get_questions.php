@@ -38,7 +38,7 @@ $objetivo  = $temario["objetivo"] ?? "Objetivo desconocido";
 
 $unique = rand(100000, 999999);
 
-
+//Cambiar la apiURL por una personal al usar la aplicación de forma local
 $apiUrl = "https://kevin-apocopic-edna.ngrok-free.dev/api/generate";
 
 $prompt = <<<PROMPT
